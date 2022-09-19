@@ -1,8 +1,7 @@
 ---
-# layout: ../layouts/Layout.astro
 title: "Czarodzieje Kodu Warszawa 2022"
-date: "09 Aug 2022"
 order: 0
+theme: theme-yellow
 thumbnail: "/assets/figure-hat.png"
 ---
 

@@ -1,11 +1,9 @@
 ---
-# layout: ../layouts/Layout.astro
 title: "O fundacji"
-date: "09 Aug 2022"
 order: 1
+theme: theme-blue
 thumbnail: "/assets/figure-space.png"
 ---
-
 
 W 2019 roku postanowiliśmy zarejestrować fundację Czarodzieje Kodu aby nasze wydarzenia były jeszcze lepsze oraz aby umożliwić rozprzestrzenienie się inicjatywy na większą liczbę miast w Polsce.
 

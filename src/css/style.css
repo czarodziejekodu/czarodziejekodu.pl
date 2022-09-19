@@ -107,3 +107,30 @@ code {
 img {
   max-width: 100%;
 }
+
+.content {
+  padding: 1rem;
+}
+
+.theme-yellow {
+  background-color: #ffff02;
+  background-image: url("/assets/tłox2.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom right;
+}
+.theme-blue {
+  background-color: #5639ff;
+  background-image: url("/assets/tło-sekcja-miasta.png");
+}
+.theme-blue .content {
+  background-color: #fff;
+  padding: 1rem 2rem;
+}
+.theme-green {
+  background-color: #c8ea00;
+}
+
+.theme-white {
+  background-color: #fff;
+}

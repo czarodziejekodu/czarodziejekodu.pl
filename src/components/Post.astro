@@ -1,18 +1,20 @@
 ---
 const { frontmatter } = Astro.props;
+
+const className = frontmatter.theme || "";
 ---
 
-{
-  frontmatter.title && (
-    <header>
-      <img src={frontmatter.thumbnail} alt="Czarodzieje kodu" />
-      <h2>{frontmatter.title}</h2>
-    </header>
-  )
-}
 
-<section>
-  <slot />
+
+<section class={className}>
+  <div class="content">
+    {
+      frontmatter.title && (
+          <h2>{frontmatter.title}</h2>
+      )
+    }
+    <slot />
+  </div>
 </section>
 
 <style>
@@ -34,19 +36,25 @@ const { frontmatter } = Astro.props;
     /* display: grid;
     grid-template-columns: 1fr auto;
     grid-gap: 1rem; */
-    padding: 1rem max(1rem, calc(50% - 50ch));
+    padding: 1rem max(0rem, calc(50% - 50ch));
     background-color: #ffc;
+    margin-bottom: 1rem;
   }
 
-
-  header {
+  /* header {
     display: grid;
-    /* margin: 2rem 0 1rem 0; */
+    margin: 2rem 0 1rem 0;
     grid-template-columns: 1fr 12fr;
     align-items: center;
     grid-gap: 1rem;
     padding: 1rem max(1rem, calc(50% - 50ch));
-    background-color: var(--color-light);
+    background-color: var(--color-light); 
+  } */
+
+  h2{
+    font-size: 50px;
+    padding: 0;
+    font-weight: 400;
   }
   img {
     width: 100px;
@@ -59,7 +67,7 @@ const { frontmatter } = Astro.props;
     gap: 1rem;
     padding: 0;
   }
- :global(section img) {
+  :global(.content :not[header] img) {
     max-width: 100%;
     min-height: 300px;
     object-fit: cover;

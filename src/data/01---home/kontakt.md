@@ -1,7 +1,7 @@
 ---
 title: "Kontakt"
-date: "09 Aug 2022"
 order: 5
+theme: theme-green
 thumbnail: "/images/figure-diamond.png"
 ---
 

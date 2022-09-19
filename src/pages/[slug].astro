@@ -5,7 +5,8 @@ import Header from "../components/Header.astro";
 import Card from "../components/Card.astro";
 
 import Post from "../components/Post.astro";
-
+const { slug } = Astro.params;
+const { page, title } = Astro.props;
 const allData = await Astro.glob("../data/*/*.md");
 
 function getDataFolders() {
@@ -31,15 +32,42 @@ function comparePost(a, b) {
 const pages = Object.keys(getDataFolders()).map((page) => {
   const p = page.split("---")[1];
   return { page: page, url: slugify(p), title: p };
-})
+});
+
 const pagesLimited = pages.slice(1, pages.length);
-const sortedPosts = getDataFolders()["01---home"].sort(comparePost);
+
+const sortedPosts2 = getDataFolders()[page].sort(comparePost);
+
+export async function getStaticPaths() {
+  const allData = await Astro.glob("../data/*/*.md");
+
+  function getDataFolders() {
+    let folders = {};
+    allData.forEach((item) => {
+      const segments = item.file.split("/");
+      const folder = segments[segments.length - 2];
+      folders[folder] = folders[folder] || [];
+      folders[folder].push(item);
+    });
+    return folders;
+  }
+
+  const pages = Object.keys(getDataFolders());
+
+  return pages.map((page) => {
+    const p = page.split("---")[1];
+    return {
+      params: { slug: slugify(p) },
+      props: { page: page, title: p },
+    };
+  });
+}
 ---
 
 <Layout title="Czarodzieje kodu">
   <main>
-    <Header pages={pagesLimited} />
-    <div>
+    <Header pages={pagesLimited} currentSlug = {slug} />
+    <!-- <div>
       {
         sortedPosts.map((post) => (
           <Post frontmatter={post.frontmatter}>
@@ -48,5 +76,30 @@ const sortedPosts = getDataFolders()["01---home"].sort(comparePost);
         ))
       }
     </div>
+    <hr> -->
+    <div>
+      {
+        sortedPosts2.map((post) => (
+          <Post frontmatter={post.frontmatter}>
+            <Fragment set:html={post.compiledContent()} />
+          </Post>
+        ))
+      }
+    </div>
   </main>
 </Layout>
+
+<style>
+  header {
+    margin: auto;
+    padding: 1rem max(1rem, calc(50% - 50ch)) 0;
+  }
+  header h1 {
+    padding: 0;
+    margin: 0;
+  }
+  header img {
+    max-width: 100%;
+    width: 300px;
+  }
+</style>

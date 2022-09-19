@@ -1,8 +1,7 @@
 ---
-# layout: ../layouts/Layout.astro
 title: "Spotkanie online"
-date: "09 Aug 2022"
 order: 4
+theme: theme-white
 thumbnail: "/assets/figure-hat.png"
 ---
 
