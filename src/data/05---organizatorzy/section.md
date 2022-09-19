@@ -11,6 +11,8 @@ Każde miasto, w którym odbywa się nasze wydarzenie  ma swoich lokalnych orga
 
 Cechują nas duży zapał oraz masa chęci i energii, napędza zaś wiara, że takie działania mogą coś zmienić.  Uśmiechy i zadowolenie uczestników to dla nas najlepsza zapłata, która utwierdza nas jeszcze mocniej, że warto organizować tego typu spotkania i są one potrzebne!
 
+
+![ilustracja2](https://www.czarodziejekodu.pl/wp-content/uploads/elementor/thumbs/ilustracja2-oatm2iz9lu88kzjmf1npudvxtnpaukhf72kl2j5nz4.png "ilustracja2")
 ### **ORGANIZATORZY EDYCJI 2019:** 
 
 #### **POZNAŃ:**
@@ -33,5 +35,4 @@ Cechują nas duży zapał oraz masa chęci i energii, napędza zaś wiara, że t
 *   Anastazja Samarets,
 *   Mateusz Waś.
 
-![ilustracja2](https://www.czarodziejekodu.pl/wp-content/uploads/elementor/thumbs/ilustracja2-oatm2iz9lu88kzjmf1npudvxtnpaukhf72kl2j5nz4.png "ilustracja2")
 
