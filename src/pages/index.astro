@@ -31,7 +31,7 @@ const pages = Object.keys(getDataFolders()).map((page) => {
   return { page: page, url: slugify(p), title: p };
 })
 const pagesLimited = pages.slice(1, pages.length);
-const sortedPosts = getDataFolders()["01---Home"].sort(comparePost);
+const sortedPosts = getDataFolders()["01---home"].sort(comparePost);
 ---
 <Layout title="Czarodzieje kodu">
   <main>
