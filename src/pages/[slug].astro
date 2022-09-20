@@ -2,7 +2,6 @@
 import slugify from "@sindresorhus/slugify";
 import Layout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
-import Card from "../components/Card.astro";
 
 import Post from "../components/Post.astro";
 const { slug } = Astro.params;
@@ -36,7 +35,7 @@ const pages = Object.keys(getDataFolders()).map((page) => {
 
 const pagesLimited = pages.slice(1, pages.length);
 
-const sortedPosts2 = getDataFolders()[page].sort(comparePost);
+const sortedPosts = getDataFolders()[page].sort(comparePost);
 
 export async function getStaticPaths() {
   const allData = await Astro.glob("../data/*/*.md");
@@ -64,10 +63,9 @@ export async function getStaticPaths() {
 }
 ---
 
-<Layout title="Czarodzieje kodu">
+<Layout title={title + " - Czarodzieje kodu"}>
   <main>
     <Header pages={pagesLimited} currentSlug = {slug} />
-    <!-- <div>
       {
         sortedPosts.map((post) => (
           <Post frontmatter={post.frontmatter}>
@@ -75,17 +73,6 @@ export async function getStaticPaths() {
           </Post>
         ))
       }
-    </div>
-    <hr> -->
-    <div>
-      {
-        sortedPosts2.map((post) => (
-          <Post frontmatter={post.frontmatter}>
-            <Fragment set:html={post.compiledContent()} />
-          </Post>
-        ))
-      }
-    </div>
   </main>
 </Layout>
 

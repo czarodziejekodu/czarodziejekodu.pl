@@ -2,8 +2,6 @@
 import slugify from "@sindresorhus/slugify";
 import Layout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
-import Card from "../components/Card.astro";
-
 import Post from "../components/Post.astro";
 
 const allData = await Astro.glob("../data/*/*.md");
@@ -33,13 +31,11 @@ const pages = Object.keys(getDataFolders()).map((page) => {
   return { page: page, url: slugify(p), title: p };
 })
 const pagesLimited = pages.slice(1, pages.length);
-const sortedPosts = getDataFolders()["01---home"].sort(comparePost);
+const sortedPosts = getDataFolders()["01---Home"].sort(comparePost);
 ---
-
 <Layout title="Czarodzieje kodu">
   <main>
     <Header pages={pagesLimited} />
-    <div>
       {
         sortedPosts.map((post) => (
           <Post frontmatter={post.frontmatter}>
@@ -47,6 +43,5 @@ const sortedPosts = getDataFolders()["01---home"].sort(comparePost);
           </Post>
         ))
       }
-    </div>
   </main>
 </Layout>
