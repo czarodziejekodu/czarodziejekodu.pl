@@ -9,12 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
-        node-version: '15.x'
+        node-version: '18.x'
 
     - name: Cache dependencies
       uses: actions/cache@v2
@@ -34,4 +34,3 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./dist
         cname: czarodzieje.gotomi.info
-
