@@ -4,54 +4,59 @@ import Logo from "../../public/assets/czarodzieje-kodu.png";
 ---
 
 <header>
-  <h1><a href="/"><img src={Logo} alt="Czarodzieje kodu" /></a></h1>
-  <ul>
-    {
-      pages.map((page) => (
-        <li>
-          <a class={page.url === currentSlug ? "current" : ""} href={"/" + page.url}>{page.title}</a>
-        </li>
-      ))
-    }
-  </ul>
+    <h1><a href="/"><img src={Logo.src} alt="Czarodzieje kodu" /></a></h1>
+    <ul>
+        {
+            pages.map((page) => (
+                <li>
+                    <a
+                        class={page.url === currentSlug ? "current" : ""}
+                        href={"/" + page.url}
+                    >
+                        {page.title}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
 </header>
 
 <style>
-  ul,
-  li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  ul {
-    display: flex;
-    gap: 1rem;
-    align-self: center;
-    justify-self: end;
-    font-size: 90%;
-  }
-  header {
-    margin: auto;
-    padding:0 max(1rem, calc(50% - 50ch));
-    display: grid;
-    grid-template-columns: 300px auto;
-    align-items: center;
-  }
+    ul,
+    li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    ul {
+        display: flex;
+        gap: 1rem;
+        align-self: center;
+        justify-self: end;
+        font-size: 90%;
+    }
+    header {
+        margin: auto;
+        padding: 0 max(1rem, calc(50% - 50ch));
+        display: grid;
+        grid-template-columns: 300px auto;
+        align-items: center;
+    }
 
-  header h1 {
-    padding: 0;
-    margin: 0;
-  }
-  header img {
-    max-width: 200px;
-  }
-  a {
-    color: inherit;
-    font-variant: small-caps;
-    text-decoration: none;
-    font-weight: 600;
-  }
-  .current{
-    border-bottom: 2px solid #5639ff;
-  }
+    header h1 {
+        padding: 0;
+        margin: 0;
+    }
+    header img {
+        max-width: 200px;
+    }
+    a {
+        color: inherit;
+        font-variant: small-caps;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .current {
+        border-bottom: 2px solid #5639ff;
+    }
 </style>

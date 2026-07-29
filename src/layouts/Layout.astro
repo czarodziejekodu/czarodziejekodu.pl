@@ -5,46 +5,46 @@ const { frontmatter } = Astro.props;
 ---
 
 <Layout title="Welcome to Astro.">
-  <main>
-    <h1><img src={Logo} alt="Czarodzieje kodu" /></h1>
-    <h2>{frontmatter.title}</h2>
-    <section>
-      <img src={frontmatter.thumbnail} alt="Czarodzieje kodu" />
-      <article>
-        <slot />
-      </article>
-    </section>
-  </main>
+    <main>
+        <img src={Logo.src} alt="Czarodzieje kodu" />
+        <h2>{frontmatter.title}</h2>
+        <section>
+            <img src={frontmatter.thumbnail} alt="Czarodzieje kodu" />
+            <article>
+                <slot />
+            </article>
+        </section>
+    </main>
 </Layout>
 
 <style>
-  main {
-    margin: auto;
+    main {
+        margin: auto;
 
-    max-width: 100ch;
-  }
-
-  @keyframes pulse {
-    0%,
-    100% {
-      background-position-y: 0%;
+        max-width: 100ch;
     }
-    50% {
-      background-position-y: 80%;
+
+    @keyframes pulse {
+        0%,
+        100% {
+            background-position-y: 0%;
+        }
+        50% {
+            background-position-y: 80%;
+        }
     }
-  }
 
-  section {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-gap: 1rem;
-    background-color: var(--color-light);
-  }
+    section {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-gap: 1rem;
+        background-color: var(--color-light);
+    }
 
-  .link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 1rem;
-    padding: 0;
-  }
+    .link-card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+        gap: 1rem;
+        padding: 0;
+    }
 </style>

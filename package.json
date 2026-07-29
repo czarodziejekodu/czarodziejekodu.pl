@@ -12,11 +12,15 @@
   "dependencies": {
     "@notable/html2markdown": "^2.0.3",
     "@sindresorhus/slugify": "^3.0.0",
-    "astro": "^5.16.10",
+    "astro": "^7.1.6",
     "html-to-md": "^0.8.8"
   },
   "devDependencies": {
-    "@astrojs/svelte": "^7.2.5",
-    "svelte": "5.46.4"
+    "@astrojs/svelte": "^9.0.1",
+    "svelte": "5.56.8"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true,
+    "fsevents@2.3.3": true
   }
 }

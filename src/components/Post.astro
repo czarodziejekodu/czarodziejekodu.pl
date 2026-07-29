@@ -4,72 +4,66 @@ const { frontmatter } = Astro.props;
 const className = frontmatter.theme || "";
 ---
 
-
-
 <section class={className}>
-  <div class="content">
-    {
-      frontmatter.title && (
-          <h2>{frontmatter.title}</h2>
-      )
-    }
-    <slot />
-  </div>
+    <div class="content">
+        {frontmatter.title && <h2>{frontmatter.title}</h2>}
+        <slot />
+    </div>
 </section>
 
 <style>
-  h1 {
-    margin: 2rem 0;
-  }
-
-  @keyframes pulse {
-    0%,
-    100% {
-      background-position-y: 0%;
+    h1 {
+        margin: 2rem 0;
     }
-    50% {
-      background-position-y: 80%;
-    }
-  }
 
-  section {
-    /* display: grid;
+    @keyframes pulse {
+        0%,
+        100% {
+            background-position-y: 0%;
+        }
+        50% {
+            background-position-y: 80%;
+        }
+    }
+
+    section {
+        /* display: grid;
     grid-template-columns: 1fr auto;
     grid-gap: 1rem; */
-    padding: 0rem max(0rem, calc(50% - 50ch));
-    background-color: #ffc;
-    margin-bottom: 1rem;
-  }
+        padding: 0rem max(0rem, calc(50% - 50ch));
+        background-color: #ffc;
+        margin-bottom: 1rem;
+    }
 
-  /* header {
+    /* header {
     display: grid;
     margin: 2rem 0 1rem 0;
     grid-template-columns: 1fr 12fr;
     align-items: center;
     grid-gap: 1rem;
     padding: 1rem max(1rem, calc(50% - 50ch));
-    background-color: var(--color-light); 
+    background-color: var(--color-light);
   } */
 
-  h2{
-    font-size: 50px;
-    padding: 0;
-    font-weight: 400;
-  }
-  img {
-    width: 100px;
-    height: auto;
-  }
+    h2 {
+        font-size: 50px;
+        padding: 0;
+        font-weight: 400;
+    }
+    img {
+        width: 100px;
+        height: auto;
+    }
 
-  .link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 1rem;
-    padding: 0;
-  }
-  :global(.content :not[header] img) {
-    max-width: 100%;
-    min-height: 300px;
-    object-fit: cover;
-  }
+    .link-card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+        gap: 1rem;
+        padding: 0;
+    }
+    :global(.content::not[header] img) {
+        max-width: 100%;
+        min-height: 300px;
+        object-fit: cover;
+    }
 </style>

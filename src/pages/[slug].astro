@@ -6,87 +6,99 @@ import Header from "../components/Header.astro";
 import Post from "../components/Post.astro";
 const { slug } = Astro.params;
 const { page, title } = Astro.props;
-const allData = await Astro.glob("../data/*/*.md");
+const allModules = import.meta.glob("../data/*/*.md", { eager: true });
+const allData = Object.entries(allModules).map(([file, mod]) => ({
+    file,
+    frontmatter: mod.frontmatter,
+    compiledContent: mod.compiledContent,
+    Content: mod.Content,
+}));
 
 function getDataFolders() {
-  let folders = {};
-  allData.forEach((item) => {
-    const segments = item.file.split("/");
-    const folder = segments[segments.length - 2];
-    folders[folder] = folders[folder] || [];
-    folders[folder].push(item);
-  });
-  return folders;
+    let folders = {};
+    allData.forEach((item) => {
+        const segments = item.file.split("/");
+        const folder = segments[segments.length - 2];
+        folders[folder] = folders[folder] || [];
+        folders[folder].push(item);
+    });
+    return folders;
 }
 
 function comparePost(a, b) {
-  const x = a.frontmatter.order;
-  const y = b.frontmatter.order;
+    const x = a.frontmatter.order;
+    const y = b.frontmatter.order;
 
-  if (b.frontmatter.order > a.frontmatter.order) return -1;
-  if (b.frontmatter.order < a.frontmatter.order) return 1;
-  return 0;
+    if (b.frontmatter.order > a.frontmatter.order) return -1;
+    if (b.frontmatter.order < a.frontmatter.order) return 1;
+    return 0;
 }
 
 const pages = Object.keys(getDataFolders()).map((page) => {
-  const p = page.split("---")[1];
-  return { page: page, url: slugify(p), title: p };
+    const p = page.split("---")[1];
+    return { page: page, url: slugify(p), title: p };
 });
 
 const pagesLimited = pages.slice(1, pages.length);
 
 const sortedPosts = getDataFolders()[page].sort(comparePost);
 
-export async function getStaticPaths() {
-  const allData = await Astro.glob("../data/*/*.md");
+export function getStaticPaths() {
+    const allModules = import.meta.glob("../data/*/*.md", { eager: true });
+    const allData = Object.entries(allModules).map(([file, mod]) => ({
+        file,
+        frontmatter: mod.frontmatter,
+        compiledContent: mod.compiledContent,
+        Content: mod.Content,
+    }));
 
-  function getDataFolders() {
-    let folders = {};
-    allData.forEach((item) => {
-      const segments = item.file.split("/");
-      const folder = segments[segments.length - 2];
-      folders[folder] = folders[folder] || [];
-      folders[folder].push(item);
+    function getDataFolders() {
+        let folders = {};
+        allData.forEach((item) => {
+            const segments = item.file.split("/");
+            const folder = segments[segments.length - 2];
+            folders[folder] = folders[folder] || [];
+            folders[folder].push(item);
+        });
+        return folders;
+    }
+
+    const pages = Object.keys(getDataFolders());
+
+    return pages.map((page) => {
+        const p = page.split("---")[1];
+        return {
+            params: { slug: slugify(p) },
+            props: { page: page, title: p },
+        };
     });
-    return folders;
-  }
-
-  const pages = Object.keys(getDataFolders());
-
-  return pages.map((page) => {
-    const p = page.split("---")[1];
-    return {
-      params: { slug: slugify(p) },
-      props: { page: page, title: p },
-    };
-  });
 }
 ---
 
 <Layout title={title + " - Czarodzieje kodu"}>
-  <main>
-    <Header pages={pagesLimited} currentSlug = {slug} />
-      {
-        sortedPosts.map((post) => (
-          <Post frontmatter={post.frontmatter}>
-            <Fragment set:html={post.compiledContent()} />
-          </Post>
-        ))
-      }
-  </main>
+    <main>
+        <Header pages={pagesLimited} currentSlug={slug} />
+        {
+            sortedPosts.map((post) => (
+                <Post frontmatter={post.frontmatter}>
+                    <Fragment set:html={post.compiledContent()} />
+                </Post>
+            ))
+        }
+    </main>
 </Layout>
 
 <style>
-  header {
-    margin: auto;
-    padding: 1rem max(1rem, calc(50% - 50ch)) 0;
-  }
-  header h1 {
-    padding: 0;
-    margin: 0;
-  }
-  header img {
-    max-width: 100%;
-    width: 300px;
-  }
+    header {
+        margin: auto;
+        padding: 1rem max(1rem, calc(50% - 50ch)) 0;
+    }
+    header h1 {
+        padding: 0;
+        margin: 0;
+    }
+    header img {
+        max-width: 100%;
+        width: 300px;
+    }
 </style>
